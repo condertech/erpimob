@@ -2,20 +2,18 @@
 
 ## Visão Geral
 
-O **gestorimob** é um ERP, contratos de locação, cobranças, manutenção e comunicação com inquilinos. O frontend está 100% construído com dados **mock** (estáticos). Este README documenta tudo que o backend em **C# (.NET)** precisa implementar para substituir esses mocks por dados reais.
+O **gestorimob** é um SaaS de gestão de imóveis, contratos de locação, cobranças, manutenção e comunicação com inquilinos. O frontend está 100% construído com dados **mock** (estáticos). Este documento descreve tudo que o backend em **C# (.NET)** precisa implementar para substituir esses mocks por dados reais.
 
 ---
 
 ## Stack do Frontend
 
-| Tecnologia        | Versão   | Uso                              |
-| ----------------- | -------- | -------------------------------- |
-| Next.js           | 16.2.6   | App Router, SSR/SSG              |
-| TypeScript        | 5        | Tipagem estrita                  |
-| Tailwind CSS      | 3.4.1    | Estilização                      |
-| Plus Jakarta Sans | —        | Fonte via `next/font/google`     |
-| lucide-react      | ^0.400.0 | Ícones                           |
-| recharts          | ^2.12.7  | Gráficos (dashboard, financeiro) |
+- **Next.js** 16.2.6 — App Router, SSR/SSG
+- **TypeScript** 5 — Tipagem estrita
+- **Tailwind CSS** 3.4.1 — Estilização
+- **Plus Jakarta Sans** — Fonte via `next/font/google`
+- **lucide-react** ^0.400.0 — Ícones
+- **recharts** ^2.12.7 — Gráficos (dashboard, financeiro)
 
 Deploy: **Netlify** (via `netlify.toml` + `@netlify/plugin-nextjs`)
 
@@ -23,13 +21,13 @@ Deploy: **Netlify** (via `netlify.toml` + `@netlify/plugin-nextjs`)
 
 ## Variáveis de Ambiente
 
-O frontend já está preparado para consumir a API via variável de ambiente. Configure no Netlify e no `.env.local`:
+Configure no Netlify e no `.env.local`:
 
 ```env
 NEXT_PUBLIC_API_URL=https://sua-api.com
 ```
 
-Atualmente em `next.config.ts`:
+Em `next.config.ts`:
 
 ```ts
 env: {
@@ -43,34 +41,34 @@ Todas as chamadas de API devem usar `process.env.NEXT_PUBLIC_API_URL` como base 
 
 ## Autenticação
 
-O sistema possui **dois perfis** de usuário:
+O sistema possui dois perfis de usuário.
 
 ### Admin
 
 - Login por **e-mail + senha**
-- Acessa todas as rotas administrativas (`/dashboard`, `/imoveis`, `/inquilinos`, etc.)
-- Credenciais de teste: `admin@gestao.com` / `admin123`
+- Acessa todas as rotas administrativas
+- Credencial de teste: `admin@gestao.com` / `admin123`
 
 ### Inquilino
 
 - Login por **CPF + senha**
 - Acessa apenas o portal do inquilino (`/portal/*`)
-- CPF de teste: `123.456.789-00` / `123456`
+- Credencial de teste: CPF `123.456.789-00` / senha `123456`
 
 ### Fluxo Esperado
 
 1. Frontend envia POST com credenciais
 2. Backend retorna **JWT**
-3. Frontend armazena o token e inclui em todas as requisições no header `Authorization: Bearer {token}`
+3. Frontend inclui o token em todas as requisições: `Authorization: Bearer {token}`
 4. Rotas protegidas redirecionam para `/login` ou `/login-inquilino` se não autenticado
 
 ### Endpoints de Auth
 
 ```
-POST /api/auth/admin/login       → { email, senha } → { token, usuario }
-POST /api/auth/inquilino/login   → { cpf, senha }   → { token, inquilino }
+POST /api/auth/admin/login       → { email, senha }  → { token, usuario }
+POST /api/auth/inquilino/login   → { cpf, senha }    → { token, inquilino }
 POST /api/auth/logout
-GET  /api/auth/me                → retorna dados do usuário logado
+GET  /api/auth/me
 ```
 
 ---
@@ -79,58 +77,52 @@ GET  /api/auth/me                → retorna dados do usuário logado
 
 ### Rotas Públicas
 
-| Rota               | Descrição                   |
-| ------------------ | --------------------------- |
-| `/`                | Página de seleção de acesso |
-| `/login`           | Login administrador         |
-| `/login-inquilino` | Login inquilino             |
+- `/` — Página de seleção de acesso
+- `/login` — Login administrador
+- `/login-inquilino` — Login inquilino
 
 ### Rotas Admin (requerem JWT de admin)
 
-| Rota                      | Descrição                                  |
-| ------------------------- | ------------------------------------------ |
-| `/dashboard`              | KPIs gerais + filtros por bloco/período    |
-| `/imoveis`                | Cards dos blocos com estatísticas          |
-| `/imoveis/novo`           | Formulário de criação de imóvel            |
-| `/imoveis/[id]`           | Visualização e edição de imóvel            |
-| `/imoveis/predio/[bloco]` | Grid de apartamentos do bloco (A/B/C/D)    |
-| `/inquilinos`             | Listagem com busca                         |
-| `/inquilinos/novo`        | Formulário de cadastro                     |
-| `/inquilinos/[id]`        | Perfil completo do inquilino               |
-| `/contratos`              | Listagem de contratos                      |
-| `/contratos/novo`         | Novo contrato (vincula inquilino + imóvel) |
-| `/cobrancas`              | Aluguéis a receber por status              |
-| `/financeiro`             | Receita, inadimplência, gráficos           |
-| `/manutencao`             | Chamados de manutenção                     |
-| `/manutencao/novo`        | Abrir novo chamado                         |
-| `/garagens`               | Vagas e veículos                           |
-| `/proprietarios`          | Donos dos imóveis                          |
-| `/proprietarios/novo`     | Cadastrar proprietário                     |
-| `/relatorios`             | Relatórios gerados                         |
-| `/whatsapp`               | Chat com inquilinos                        |
+- `/dashboard` — KPIs gerais com filtros por bloco e período
+- `/imoveis` — Cards dos blocos com estatísticas
+- `/imoveis/novo` — Formulário de criação de imóvel
+- `/imoveis/[id]` — Visualização e edição de imóvel
+- `/imoveis/predio/[bloco]` — Grid de apartamentos do bloco (A/B/C/D)
+- `/inquilinos` — Listagem com busca
+- `/inquilinos/novo` — Formulário de cadastro
+- `/inquilinos/[id]` — Perfil completo do inquilino
+- `/contratos` — Listagem de contratos
+- `/contratos/novo` — Novo contrato (vincula inquilino + imóvel)
+- `/cobrancas` — Aluguéis a receber por status
+- `/financeiro` — Receita, inadimplência, gráficos
+- `/manutencao` — Chamados de manutenção
+- `/manutencao/novo` — Abrir novo chamado
+- `/garagens` — Vagas e veículos
+- `/proprietarios` — Donos dos imóveis
+- `/proprietarios/novo` — Cadastrar proprietário
+- `/relatorios` — Relatórios gerados
+- `/whatsapp` — Chat com inquilinos
 
 ### Rotas Portal Inquilino (requerem JWT de inquilino)
 
-| Rota                   | Descrição                                 |
-| ---------------------- | ----------------------------------------- |
-| `/portal/dashboard`    | Resumo: próximo vencimento, valor, status |
-| `/portal/pagamentos`   | Histórico de aluguéis + status            |
-| `/portal/contrato`     | Contrato vigente em detalhes              |
-| `/portal/garagem`      | Vaga(s) vinculada(s)                      |
-| `/portal/solicitacoes` | Abrir e acompanhar chamados               |
-| `/portal/perfil`       | Dados cadastrais do inquilino             |
+- `/portal/dashboard` — Resumo: próximo vencimento, valor, status
+- `/portal/pagamentos` — Histórico de aluguéis e status
+- `/portal/contrato` — Contrato vigente em detalhes
+- `/portal/garagem` — Vaga vinculada
+- `/portal/solicitacoes` — Abrir e acompanhar chamados
+- `/portal/perfil` — Dados cadastrais do inquilino
 
 ---
 
 ## Entidades e Modelos de Dados
 
-### `Imovel`
+### Imovel
 
 ```csharp
 public class Imovel
 {
     public string Id { get; set; }           // GUID
-    public string Codigo { get; set; }       // "A-101" (Bloco + Numero)
+    public string Codigo { get; set; }       // "A-101"
     public string Tipo { get; set; }         // "Apartamento"
     public string Bloco { get; set; }        // "A" | "B" | "C" | "D"
     public string Numero { get; set; }       // "101"
@@ -147,14 +139,14 @@ public class Imovel
 }
 ```
 
-### `Inquilino`
+### Inquilino
 
 ```csharp
 public class Inquilino
 {
     public string Id { get; set; }
     public string Nome { get; set; }
-    public string Cpf { get; set; }          // formato: "123.456.789-00"
+    public string Cpf { get; set; }          // "123.456.789-00"
     public string Telefone { get; set; }
     public string Whatsapp { get; set; }
     public string Email { get; set; }
@@ -164,12 +156,12 @@ public class Inquilino
     public string? ImovelCodigo { get; set; }
     public string? StatusContrato { get; set; } // "ativo" | "vencendo" | "encerrado"
     public string? Observacoes { get; set; }
-    public string SenhaHash { get; set; }    // hash bcrypt
+    public string SenhaHash { get; set; }    // bcrypt
     public DateTime CriadoEm { get; set; }
 }
 ```
 
-### `Proprietario`
+### Proprietario
 
 ```csharp
 public class Proprietario
@@ -185,12 +177,12 @@ public class Proprietario
     public string? Banco { get; set; }
     public string? Agencia { get; set; }
     public string? Conta { get; set; }
-    public List<string> Imoveis { get; set; } // lista de códigos ex: ["A-101", "A-102"]
+    public List<string> Imoveis { get; set; } // ex: ["A-101", "A-102"]
     public DateTime CriadoEm { get; set; }
 }
 ```
 
-### `Contrato`
+### Contrato
 
 ```csharp
 public class Contrato
@@ -213,7 +205,7 @@ public class Contrato
 }
 ```
 
-### `Cobranca`
+### Cobranca
 
 ```csharp
 public class Cobranca
@@ -233,7 +225,7 @@ public class Cobranca
 }
 ```
 
-### `Chamado` (Manutenção)
+### Chamado (Manutencao)
 
 ```csharp
 public class Chamado
@@ -255,7 +247,7 @@ public class Chamado
 }
 ```
 
-### `Vaga` (Garagem)
+### Vaga (Garagem)
 
 ```csharp
 public class Vaga
@@ -274,7 +266,7 @@ public class Vaga
 }
 ```
 
-### `Predio` (Bloco)
+### Predio (Bloco)
 
 ```csharp
 public class Predio
@@ -289,7 +281,7 @@ public class Predio
 }
 ```
 
-### `Conversa` e `Mensagem` (WhatsApp)
+### Conversa e Mensagem (WhatsApp)
 
 ```csharp
 public class Conversa
@@ -328,14 +320,14 @@ POST   /api/auth/logout
 GET    /api/auth/me
 ```
 
-### Prédios
+### Predios
 
 ```
 GET    /api/predios
 GET    /api/predios/{bloco}
 ```
 
-### Imóveis
+### Imoveis
 
 ```
 GET    /api/imoveis                   ?bloco=&status=&busca=
@@ -343,7 +335,7 @@ GET    /api/imoveis/{id}
 POST   /api/imoveis
 PUT    /api/imoveis/{id}
 DELETE /api/imoveis/{id}
-GET    /api/imoveis/bloco/{bloco}     → para a página /imoveis/predio/[bloco]
+GET    /api/imoveis/bloco/{bloco}
 ```
 
 ### Inquilinos
@@ -359,7 +351,7 @@ GET    /api/inquilinos/{id}/contratos
 GET    /api/inquilinos/{id}/chamados
 ```
 
-### Proprietários
+### Proprietarios
 
 ```
 GET    /api/proprietarios
@@ -380,18 +372,18 @@ DELETE /api/contratos/{id}
 POST   /api/contratos/{id}/encerrar
 ```
 
-### Cobranças
+### Cobrancas
 
 ```
 GET    /api/cobrancas                 ?status=pendente|pago|atrasado&referencia=&inquilinoId=
 GET    /api/cobrancas/{id}
 POST   /api/cobrancas
 PUT    /api/cobrancas/{id}
-POST   /api/cobrancas/{id}/pagar      → registrar pagamento
-POST   /api/cobrancas/gerar           → gerar cobranças mensais (via cron job)
+POST   /api/cobrancas/{id}/pagar
+POST   /api/cobrancas/gerar
 ```
 
-### Chamados (Manutenção)
+### Chamados (Manutencao)
 
 ```
 GET    /api/chamados                  ?status=&prioridade=&imovelId=
@@ -413,12 +405,24 @@ PUT    /api/vagas/{id}
 
 ```
 GET    /api/dashboard                 ?bloco=&referencia=
-→ { totalImoveis, imoveisOcupados, imoveisVagos, totalInquilinos,
-    contratosAtivos, contratosVencendo, inadimplentes,
-    receitaMensal, chamadosAbertos }
+GET    /api/dashboard/receita-mensal
+GET    /api/dashboard/inadimplentes
+```
 
-GET    /api/dashboard/receita-mensal  → [{ mes: "Jan", valor: 14200 }, ...]
-GET    /api/dashboard/inadimplentes   → lista de inquilinos com cobrança atrasada
+Resposta de `/api/dashboard`:
+
+```json
+{
+  "totalImoveis": 200,
+  "imoveisOcupados": 120,
+  "imoveisVagos": 60,
+  "totalInquilinos": 10,
+  "contratosAtivos": 8,
+  "contratosVencendo": 2,
+  "inadimplentes": 3,
+  "receitaMensal": 15300,
+  "chamadosAbertos": 5
+}
 ```
 
 ### WhatsApp
@@ -433,7 +437,7 @@ GET    /api/whatsapp/templates
 ### Portal do Inquilino
 
 ```
-GET    /api/portal/resumo             → dashboard do inquilino logado
+GET    /api/portal/resumo
 GET    /api/portal/contrato
 GET    /api/portal/pagamentos
 GET    /api/portal/garagem
@@ -447,40 +451,42 @@ PUT    /api/portal/perfil
 
 ## Regras de Negócio
 
-### Cobranças
+### Cobrancas
 
-- Geração automática no dia 1 de cada mês via cron job
+- Geração automática no dia 1 de cada mês (cron job)
 - Multa por atraso: **2%** sobre o valor total
 - Juros: **0,033% ao dia** após o vencimento
 - Status muda para `atrasado` automaticamente no dia seguinte ao vencimento se não pago
-- Contrato com status `vencendo` = faltam ≤ 30 dias para `dataTermino`
+- Contrato com status `vencendo` = faltam 30 dias ou menos para `dataTermino`
 
-### Imóveis
+### Imoveis
 
-- Estrutura: **4 blocos (A, B, C, D)** × **5 andares** × **10 apartamentos** = 200 unidades
-- Código = `{BLOCO}-{ANDAR}{APT:2 dígitos}` → ex: `A-101`, `B-304`
-- Ao vincular inquilino → status do imóvel vira `ocupado`
-- Ao encerrar contrato → status do imóvel vira `vago`
+- Estrutura: 4 blocos (A, B, C, D) × 5 andares × 10 apartamentos = **200 unidades**
+- Código do imóvel: `{BLOCO}-{ANDAR}{APT:2 dígitos}` — ex: `A-101`, `B-304`
+- Ao vincular inquilino → status do imóvel muda para `ocupado`
+- Ao encerrar contrato → status do imóvel muda para `vago`
 
 ### Portal do Inquilino
 
-- Login por **CPF** (não e-mail)
-- O inquilino só vê dados do **seu próprio imóvel, contrato e vaga**
+- Login por CPF (não por e-mail)
+- O inquilino acessa apenas dados do **seu próprio** imóvel, contrato e vaga
 
 ---
 
 ## Formato de Resposta da API
 
+Envelope padrão para todas as respostas:
+
 ```json
 {
   "success": true,
-  "data": { ... },
+  "data": {},
   "message": "Operação realizada com sucesso",
   "errors": null
 }
 ```
 
-Em erro:
+Em caso de erro:
 
 ```json
 {
@@ -491,13 +497,13 @@ Em erro:
 }
 ```
 
-Listas paginadas:
+Listas com paginação:
 
 ```json
 {
   "success": true,
   "data": {
-    "items": [ ... ],
+    "items": [],
     "total": 200,
     "pagina": 1,
     "porPagina": 20
@@ -507,31 +513,31 @@ Listas paginadas:
 
 ---
 
-## Seed do Banco de Dados
+## Dados de Seed
 
-| Entidade      | Qtde | Observação                        |
-| ------------- | ---- | --------------------------------- |
-| Prédios       | 4    | Blocos A, B, C, D                 |
-| Imóveis       | 200  | Gerados: 4 × 5 × 10               |
-| Inquilinos    | 10   | Com login funcional               |
-| Proprietários | 8    | —                                 |
-| Contratos     | 10   | 8 ativos, 2 vencendo              |
-| Cobranças     | 12   | 6 pagas, 3 pendentes, 3 atrasadas |
-| Chamados      | 7    | Mix de status/prioridade          |
-| Vagas         | 12   | Distribuídas por bloco            |
+Volumes para popular o banco inicialmente:
 
-**Inquilino de teste (portal):**
+- **Predios:** 4 (Blocos A, B, C, D)
+- **Imoveis:** 200 (gerados: 4 × 5 × 10)
+- **Inquilinos:** 10 (com login funcional)
+- **Proprietarios:** 8
+- **Contratos:** 10 (8 ativos, 2 vencendo)
+- **Cobrancas:** 12 (6 pagas, 3 pendentes, 3 atrasadas)
+- **Chamados:** 7 (mix de status e prioridade)
+- **Vagas:** 12 (distribuídas por bloco)
 
-```
-CPF:   123.456.789-00
-Senha: 123456
-```
-
-**Admin de teste:**
+Credenciais de seed:
 
 ```
-Email: admin@gestao.com
-Senha: admin123
+Admin
+  Email: admin@gestao.com
+  Senha: admin123
+
+Inquilino (portal)
+  Nome:  Carlos Eduardo Silva
+  CPF:   123.456.789-00
+  Senha: 123456
+  Imovel: A-101
 ```
 
 ---
@@ -548,22 +554,20 @@ FluentValidation
 Scalar / Swagger — documentação da API
 ```
 
-### Estrutura de Projeto
+Estrutura de projeto sugerida:
 
 ```
 gestorimob-api/
 ├── src/
-│   ├── GestorImob.API/            ← Controllers + Program.cs
-│   ├── GestorImob.Application/    ← Services, DTOs, Interfaces
-│   ├── GestorImob.Domain/         ← Entities, Enums, ValueObjects
-│   └── GestorImob.Infrastructure/ ← DbContext, Repositories, Migrations
+│   ├── GestorImob.API/            <- Controllers, Program.cs
+│   ├── GestorImob.Application/    <- Services, DTOs, Interfaces
+│   ├── GestorImob.Domain/         <- Entities, Enums, ValueObjects
+│   └── GestorImob.Infrastructure/ <- DbContext, Repositories, Migrations
 ├── tests/
 └── docker-compose.yml
 ```
 
 ### CORS
-
-Configure para aceitar o frontend no Netlify:
 
 ```csharp
 builder.Services.AddCors(options =>
@@ -581,3 +585,208 @@ builder.Services.AddCors(options =>
 
 app.UseCors("FrontendPolicy");
 ```
+
+---
+
+## Repositório Frontend
+
+- Código: https://github.com/condertech/erpimob
+- Deploy: Netlify (configurado via `netlify.toml`)
+- Backend: criar repositório separado `gestorimob-api`
+
+---
+
+## Arquitetura de Infraestrutura
+
+### Servidor Recomendado
+
+Uma única VPS é suficiente para operar o sistema com até 200 inquilinos ativos.
+
+- **CPU:** 2 vCPU
+- **RAM:** 4 GB
+- **Disco:** 80 GB SSD
+- **Custo estimado:** R$ 80 a R$ 150/mês
+
+Não há necessidade de cluster, Kubernetes ou múltiplos servidores neste porte. Uma VPS bem configurada com Docker reduz custos e simplifica manutenção.
+
+---
+
+### Componentes da Stack
+
+**Nginx (ou Nginx Proxy Manager)**
+Responsável pelo roteamento de requisições, SSL (via Let's Encrypt) e proxy reverso para os serviços internos.
+
+**Frontend — Next.js**
+Servido via Netlify (deploy estático/SSR). Consome a API via `NEXT_PUBLIC_API_URL`.
+
+**Backend — ASP.NET Core (.NET 8)**
+API REST principal. Processa autenticação, regras de negócio, CRUD de todas as entidades e expõe os endpoints documentados neste arquivo.
+
+**Worker — .NET Background Service**
+Serviço em background responsável por:
+
+- Geração automática de cobranças mensais (cron job todo dia 1)
+- Processamento de filas de mensagens (WhatsApp, notificações)
+- Envio de lembretes automáticos de vencimento
+- Atualização de status de cobranças em atraso
+
+**PostgreSQL**
+Banco de dados principal. Armazena todas as entidades: imóveis, inquilinos, contratos, cobranças, chamados, conversas e mensagens.
+
+**Redis**
+Controla filas de processamento assíncrono, cache de sessões JWT, controle de rate limiting e tentativas de reenvio de mensagens.
+
+**Webhook WhatsApp API**
+Endpoint público que recebe eventos da API do WhatsApp (mensagens recebidas, confirmações de entrega/leitura). O backend processa e salva no PostgreSQL, atualizando o status em tempo real.
+
+**Backup Automático**
+Script diário de dump do PostgreSQL com retenção de 7 dias. Armazenamento em bucket externo (S3 compatível).
+
+---
+
+### Diagrama de Comunicacao
+
+```
+Inquilino/Admin (browser)
+        |
+        v
+   Netlify (Frontend Next.js)
+        |
+        v
+   Nginx (VPS) — SSL termination, proxy reverso
+        |
+        +---> ASP.NET Core API (:5000)
+        |           |
+        |           +---> PostgreSQL (:5432)
+        |           |
+        |           +---> Redis (:6379)
+        |           |
+        |           +---> Worker (Background Service)
+        |
+        +---> Webhook WhatsApp (/api/whatsapp/webhook)
+                    |
+                    v
+             WhatsApp Business API
+```
+
+---
+
+### Configuracao Docker (docker-compose.yml)
+
+```yaml
+version: "3.9"
+
+services:
+  api:
+    build: ./gestorimob-api
+    container_name: gestorimob_api
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__Default=Host=postgres;Database=gestorimob;Username=postgres;Password=SENHA_FORTE
+      - Redis__Connection=redis:6379
+      - Jwt__Secret=CHAVE_JWT_SECRETA_256_BITS
+    depends_on:
+      - postgres
+      - redis
+
+  worker:
+    build: ./gestorimob-api
+    container_name: gestorimob_worker
+    restart: always
+    command: ["dotnet", "GestorImob.Worker.dll"]
+    environment:
+      - ConnectionStrings__Default=Host=postgres;Database=gestorimob;Username=postgres;Password=SENHA_FORTE
+      - Redis__Connection=redis:6379
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: gestorimob_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: gestorimob
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SENHA_FORTE
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: gestorimob_redis
+    restart: always
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+---
+
+### Estrutura de Projeto Sugerida
+
+```
+gestorimob-api/
+├── src/
+│   ├── GestorImob.API/              <- Controllers, Program.cs, Middlewares
+│   ├── GestorImob.Application/      <- Services, DTOs, Interfaces, Validators
+│   ├── GestorImob.Domain/           <- Entities, Enums, ValueObjects
+│   ├── GestorImob.Infrastructure/   <- DbContext, Repositories, Migrations, Redis
+│   └── GestorImob.Worker/           <- Background Services, Cron Jobs, Filas
+├── tests/
+│   ├── GestorImob.UnitTests/
+│   └── GestorImob.IntegrationTests/
+├── docker-compose.yml
+└── nginx.conf
+```
+
+---
+
+### Responsabilidades por Componente
+
+**API (.NET):**
+Recebe requisições do frontend, valida JWT, aplica regras de negócio e retorna dados. Envia mensagens WhatsApp via fila no Redis.
+
+**Worker (.NET Background Service):**
+Processa filas assíncronas, executa cron jobs (cobranças mensais, lembretes de vencimento, atualização de status atrasado), reprocessa falhas de envio WhatsApp.
+
+**PostgreSQL:**
+Fonte de verdade. Armazena todas as entidades e histórico de mensagens.
+
+**Redis:**
+Fila de envio de mensagens (lista), cache de tokens JWT invalidados, controle de tentativas e rate limiting da API WhatsApp.
+
+**Webhook WhatsApp:**
+Endpoint `POST /api/whatsapp/webhook` público, validado via assinatura HMAC. Recebe eventos de entrega, leitura e mensagens recebidas.
+
+---
+
+## Custos Operacionais Estimados
+
+- VPS (2 vCPU / 4 GB RAM): R$ 80 a R$ 150/mês
+- Backup externo (S3 ou similar): R$ 20 a R$ 50/mês
+- Domínio + SSL (Let's Encrypt gratuito): baixo custo
+- WhatsApp Business API: conforme volume de mensagens
+
+**Total estimado: R$ 120 a R$ 300/mês**
+
+---
+
+## Modelo Comercial
+
+- **Implantação:** R$ 8.000 (setup completo: servidor, deploy, seed, treinamento)
+- **Mensalidade:** R$ 497/mês
+
+A mensalidade contempla:
+
+- Hospedagem e monitoramento do servidor
+- Backup automático diário
+- Suporte técnico
+- Manutenção da integração WhatsApp
+- Atualizações corretivas de bugs
