@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { ShieldCheck, UserRound } from "lucide-react";
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="text-center">
             <p className="font-bold text-gray-800 text-base">Administrador</p>
             <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-              Painel completo de gestão de imóveis, contratos e financeiro
+              Painel completo de gest�o de im�veis, contratos e financeiro
             </p>
           </div>
           <span
@@ -67,7 +67,7 @@ export default function Home() {
           <div className="text-center">
             <p className="font-bold text-gray-800 text-base">Inquilino</p>
             <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-              Portal do inquilino — boletos, contratos, solicitações e mais
+              Portal do inquilino - boletos, contratos, solicita��es e mais
             </p>
           </div>
           <span

@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   Imovel,
   Predio,
   Inquilino,
@@ -12,79 +12,79 @@
   Email,
 } from "@/types";
 
-// â”€â”€ PrÃ©dios / Blocos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Prédios / Blocos
 export const mockPredios: Predio[] = [
   {
     id: "A",
     nome: "Bloco A",
     bloco: "A",
-    endereco: "Rua das AcÃ¡cias, 450 â€” Centro",
+    endereco: "Rua das Acácias, 450 - Centro",
     andares: 5,
     aptosPorAndar: 10,
-    descricao: "Primeiro bloco, prÃ³ximo Ã  portaria",
+    descricao: "Primeiro bloco, próximo à portaria",
   },
   {
     id: "B",
     nome: "Bloco B",
     bloco: "B",
-    endereco: "Rua das AcÃ¡cias, 452 â€” Centro",
+    endereco: "Rua das Acácias, 452 - Centro",
     andares: 5,
     aptosPorAndar: 10,
-    descricao: "Segundo bloco, Ã¡rea central",
+    descricao: "Segundo bloco, área central",
   },
   {
     id: "C",
     nome: "Bloco C",
     bloco: "C",
-    endereco: "Rua das AcÃ¡cias, 454 â€” Centro",
+    endereco: "Rua das Acácias, 454 - Centro",
     andares: 5,
     aptosPorAndar: 10,
-    descricao: "Terceiro bloco, prÃ³ximo Ã  piscina",
+    descricao: "Terceiro bloco, próximo à piscina",
   },
   {
     id: "D",
     nome: "Bloco D",
     bloco: "D",
-    endereco: "Rua das AcÃ¡cias, 456 â€” Centro",
+    endereco: "Rua das Acácias, 456 - Centro",
     andares: 5,
     aptosPorAndar: 10,
-    descricao: "Quarto bloco, fundos do condomÃ­nio",
+    descricao: "Quarto bloco, fundos do condomínio",
   },
 ];
 
-// â”€â”€ ImÃ³veis â€” gerados automaticamente (4 blocos Ã— 5 andares Ã— 10 aptos = 200) â”€â”€
+// Imóveis - gerados automaticamente (4 blocos x 5 andares x 10 aptos = 200)
 function gerarImoveis(): Imovel[] {
   const enderecos: Record<string, string> = {
-    A: "Rua das AcÃ¡cias, 450 â€” Bloco A â€” Centro",
-    B: "Rua das AcÃ¡cias, 452 â€” Bloco B â€” Centro",
-    C: "Rua das AcÃ¡cias, 454 â€” Bloco C â€” Centro",
-    D: "Rua das AcÃ¡cias, 456 â€” Bloco D â€” Centro",
+    A: "Rua das Acácias, 450" Bloco A - Centro",
+    B: "Rua das Acácias, 452" Bloco B - Centro",
+    C: "Rua das Acácias, 454" Bloco C - Centro",
+    D: "Rua das Acácias, 456" Bloco D - Centro",
   };
   const proprietarios: Record<string, { id: string; nome: string }> = {
-    A: { id: "1", nome: "JoÃ£o Pereira Alves" },
+    A: { id: "1", nome: "João Pereira Alves" },
     B: { id: "2", nome: "Roberta Lima Nunes" },
-    C: { id: "3", nome: "Marco AurÃ©lio Dias" },
+    C: { id: "3", nome: "Marco Aurélio Dias" },
     D: { id: "4", nome: "Fernanda Aparecida Costa" },
   };
 
-  // Inquilinos reais jÃ¡ existentes â€” vinculados pelo ID do imÃ³vel
+  // Inquilinos reais já existentes" vinculados pelo ID do imóvel
   const ocupadosEspecificos: Record<
     string,
     { inqId: string; inqNome: string }
   > = {
     "1": { inqId: "1", inqNome: "Carlos Eduardo Silva" },
     "2": { inqId: "2", inqNome: "Maria Fernanda Santos" },
-    "4": { inqId: "3", inqNome: "JosÃ© AntÃ´nio Oliveira" },
+    "4": { inqId: "3", inqNome: "José Antônio Oliveira" },
     "6": { inqId: "4", inqNome: "Ana Paula Rodrigues" },
-    "7": { inqId: "5", inqNome: "Marcos VinÃ­cius Lima" },
-    "9": { inqId: "6", inqNome: "PatrÃ­cia Alves Souza" },
+    "7": { inqId: "5", inqNome: "Marcos Vinícius Lima" },
+    "9": { inqId: "6", inqNome: "Patrícia Alves Souza" },
     "11": { inqId: "7", inqNome: "Luciana Cristina Nunes" },
     "12": { inqId: "8", inqNome: "Ricardo Souza Melo" },
     "14": { inqId: "9", inqNome: "Empresa XYZ Ltda" },
     "15": { inqId: "10", inqNome: "Bruna Carvalho Dias" },
   };
 
-  // Nomes fictÃ­cios para apartamentos ocupados sem inquilino cadastrado
+  // Nomes fictícios para apartamentos ocupados sem inquilino cadastrado
   const nomesExtras = [
     "Roberto Alves Ferreira",
     "Fernanda Costa Lima",
@@ -92,8 +92,8 @@ function gerarImoveis(): Imovel[] {
     "Juliana Pereira Gomes",
     "Rafael Barbosa Santos",
     "Camila Martins Rocha",
-    "AndrÃ© Gomes Cavalcanti",
-    "Beatriz AraÃºjo Silva",
+    "André Gomes Cavalcanti",
+    "Beatriz Araújo Silva",
     "Felipe Carvalho Nunes",
     "Larissa Nascimento Santos",
     "Gustavo Melo Costa",
@@ -101,7 +101,7 @@ function gerarImoveis(): Imovel[] {
     "Bruno Moreira Alves",
     "Vanessa Ribeiro Lima",
     "Diego Castro Oliveira",
-    "NatÃ¡lia Pinto Ferreira",
+    "Natália Pinto Ferreira",
     "Thiago Correia Santos",
     "Isabela Monteiro Rocha",
     "Leonardo Freitas Costa",
@@ -111,11 +111,11 @@ function gerarImoveis(): Imovel[] {
     "Henrique Sousa Alves",
     "Daniela Cunha Rocha",
     "Marcelo Rocha Ferreira",
-    "SÃ´nia Aparecida Lima",
+    "Sônia Aparecida Lima",
     "Wilson Rodrigues Costa",
     "Eliana Moreira Santos",
-    "ClÃ¡udio Barbosa Alves",
-    "Vera LÃºcia Nunes",
+    "Cláudio Barbosa Alves",
+    "Vera Lúcia Nunes",
   ];
 
   const imoveis: Imovel[] = [];
@@ -181,7 +181,7 @@ function gerarImoveis(): Imovel[] {
 
 export const mockImoveis: Imovel[] = gerarImoveis();
 
-// â”€â”€ Inquilinos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Inquilinos
 export const mockInquilinos: Inquilino[] = [
   {
     id: "1",
@@ -213,13 +213,13 @@ export const mockInquilinos: Inquilino[] = [
   },
   {
     id: "3",
-    nome: "JosÃ© AntÃ´nio Oliveira",
+    nome: "José Antônio Oliveira",
     cpf: "345.678.901-22",
     telefone: "(11) 97345-6789",
     whatsapp: "(11) 97345-6789",
     email: "jose.oliveira@email.com",
     profissao: "Contador",
-    empresa: "EscritÃ³rio ContÃ¡bil",
+    empresa: "Escritório Contábil",
     imovelId: "4",
     imovelCodigo: "A-104",
     statusContrato: "ativo",
@@ -232,7 +232,7 @@ export const mockInquilinos: Inquilino[] = [
     telefone: "(11) 96456-7890",
     whatsapp: "(11) 96456-7890",
     email: "ana.rodrigues@email.com",
-    profissao: "MÃ©dica",
+    profissao: "Médica",
     empresa: "Hospital Municipal",
     imovelId: "6",
     imovelCodigo: "A-106",
@@ -241,13 +241,13 @@ export const mockInquilinos: Inquilino[] = [
   },
   {
     id: "5",
-    nome: "Marcos VinÃ­cius Lima",
+    nome: "Marcos Vinícius Lima",
     cpf: "567.890.123-44",
     telefone: "(11) 95567-8901",
     whatsapp: "(11) 95567-8901",
     email: "marcos.lima@email.com",
     profissao: "Designer",
-    empresa: "AgÃªncia Criativa",
+    empresa: "Agência Criativa",
     imovelId: "7",
     imovelCodigo: "A-107",
     statusContrato: "ativo",
@@ -255,13 +255,13 @@ export const mockInquilinos: Inquilino[] = [
   },
   {
     id: "6",
-    nome: "PatrÃ­cia Alves Souza",
+    nome: "Patrícia Alves Souza",
     cpf: "678.901.234-55",
     telefone: "(11) 94678-9012",
     whatsapp: "(11) 94678-9012",
     email: "patricia.souza@email.com",
     profissao: "Advogada",
-    empresa: "EscritÃ³rio Alves",
+    empresa: "Escritório Alves",
     imovelId: "9",
     imovelCodigo: "A-109",
     statusContrato: "ativo",
@@ -289,7 +289,7 @@ export const mockInquilinos: Inquilino[] = [
     whatsapp: "(11) 92890-1234",
     email: "ricardo.melo@email.com",
     profissao: "Vendedor",
-    empresa: "ComÃ©rcio Belo",
+    empresa: "Comércio Belo",
     imovelId: "12",
     imovelCodigo: "A-202",
     statusContrato: "ativo",
@@ -302,7 +302,7 @@ export const mockInquilinos: Inquilino[] = [
     telefone: "(11) 3090-1234",
     whatsapp: "(11) 99901-2345",
     email: "contato@empresaxyz.com",
-    profissao: "Pessoa JurÃ­dica",
+    profissao: "Pessoa Jurídica",
     empresa: "-",
     imovelId: "14",
     imovelCodigo: "A-204",
@@ -325,16 +325,16 @@ export const mockInquilinos: Inquilino[] = [
   },
 ];
 
-// â”€â”€ ProprietÃ¡rios â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Proprietários
 export const mockProprietarios: Proprietario[] = [
   {
     id: "1",
-    nome: "JoÃ£o Pereira Alves",
+    nome: "João Pereira Alves",
     cpfCnpj: "111.222.333-44",
     telefone: "(11) 99111-2233",
     whatsapp: "(11) 99111-2233",
     email: "joao.alves@email.com",
-    endereco: "Rua das Palmeiras, 10 â€“ Centro",
+    endereco: "Rua das Palmeiras, 10 - Centro",
     chavePix: "111.222.333-44",
     banco: "Bradesco",
     agencia: "1234",
@@ -349,9 +349,9 @@ export const mockProprietarios: Proprietario[] = [
     telefone: "(11) 98222-3344",
     whatsapp: "(11) 98222-3344",
     email: "roberta.nunes@email.com",
-    endereco: "Av. Brasil, 500 â€“ Bela Vista",
+    endereco: "Av. Brasil, 500 - Bela Vista",
     chavePix: "roberta.nunes@email.com",
-    banco: "ItaÃº",
+    banco: "Itaú",
     agencia: "5678",
     conta: "23456-7",
     imoveis: ["AP-201", "A-104"],
@@ -359,7 +359,7 @@ export const mockProprietarios: Proprietario[] = [
   },
   {
     id: "3",
-    nome: "Marco AurÃ©lio Dias",
+    nome: "Marco Aurélio Dias",
     cpfCnpj: "333.444.555-66",
     telefone: "(11) 97333-4455",
     whatsapp: "(11) 97333-4455",
@@ -394,7 +394,7 @@ export const mockProprietarios: Proprietario[] = [
     telefone: "(11) 95555-6677",
     whatsapp: "(11) 95555-6677",
     email: "henrique.borges@email.com",
-    endereco: "Rua da Paz, 33 â€“ Vila Nova",
+    endereco: "Rua da Paz, 33 - Vila Nova",
     chavePix: "henrique.borges@email.com",
     banco: "Nubank",
     agencia: "-",
@@ -409,7 +409,7 @@ export const mockProprietarios: Proprietario[] = [
     telefone: "(11) 94666-7788",
     whatsapp: "(11) 94666-7788",
     email: "osvaldo.pinto@email.com",
-    endereco: "Av. GetÃºlio Vargas, 1500",
+    endereco: "Av. Getúlio Vargas, 1500",
     chavePix: "666.777.888-99",
     banco: "Bradesco",
     agencia: "7890",
@@ -419,14 +419,14 @@ export const mockProprietarios: Proprietario[] = [
   },
   {
     id: "7",
-    nome: "Grupo ImÃ³veis ABC Ltda",
+    nome: "Grupo Imóveis ABC Ltda",
     cpfCnpj: "12.345.678/0001-90",
     telefone: "(11) 3678-9900",
     whatsapp: "(11) 99678-9900",
     email: "contato@imoveisabc.com.br",
-    endereco: "Av. Paulista, 2000 â€“ Bela Vista",
+    endereco: "Av. Paulista, 2000 - Bela Vista",
     chavePix: "12.345.678/0001-90",
-    banco: "ItaÃº",
+    banco: "Itaú",
     agencia: "0001",
     conta: "67890-1",
     imoveis: ["AP-501", "A-204"],
@@ -434,12 +434,12 @@ export const mockProprietarios: Proprietario[] = [
   },
   {
     id: "8",
-    nome: "ImÃ³veis Reunidos S.A.",
+    nome: "Imóveis Reunidos S.A.",
     cpfCnpj: "98.765.432/0001-10",
     telefone: "(11) 3432-0011",
     whatsapp: "(11) 99432-0011",
     email: "admin@imoveisreunidos.com",
-    endereco: "Rua Augusta, 900 â€“ ConsolaÃ§Ã£o",
+    endereco: "Rua Augusta, 900 - Consolação",
     chavePix: "98.765.432/0001-10",
     banco: "Caixa",
     agencia: "0002",
@@ -449,7 +449,7 @@ export const mockProprietarios: Proprietario[] = [
   },
 ];
 
-// â”€â”€ Contratos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Contratos
 export const mockContratos: Contrato[] = [
   {
     id: "1",
@@ -458,7 +458,7 @@ export const mockContratos: Contrato[] = [
     inquilinoId: "1",
     inquilinoNome: "Carlos Eduardo Silva",
     proprietarioId: "1",
-    proprietarioNome: "JoÃ£o Pereira Alves",
+    proprietarioNome: "João Pereira Alves",
     dataInicio: "2023-02-01",
     dataTermino: "2025-01-31",
     valorAluguel: 1200,
@@ -474,7 +474,7 @@ export const mockContratos: Contrato[] = [
     inquilinoId: "2",
     inquilinoNome: "Maria Fernanda Santos",
     proprietarioId: "1",
-    proprietarioNome: "JoÃ£o Pereira Alves",
+    proprietarioNome: "João Pereira Alves",
     dataInicio: "2023-03-01",
     dataTermino: "2025-02-28",
     valorAluguel: 1100,
@@ -488,7 +488,7 @@ export const mockContratos: Contrato[] = [
     imovelId: "4",
     imovelCodigo: "A-104",
     inquilinoId: "3",
-    inquilinoNome: "JosÃ© AntÃ´nio Oliveira",
+    inquilinoNome: "José Antônio Oliveira",
     proprietarioId: "2",
     proprietarioNome: "Roberta Lima Nunes",
     dataInicio: "2023-02-15",
@@ -506,7 +506,7 @@ export const mockContratos: Contrato[] = [
     inquilinoId: "4",
     inquilinoNome: "Ana Paula Rodrigues",
     proprietarioId: "3",
-    proprietarioNome: "Marco AurÃ©lio Dias",
+    proprietarioNome: "Marco Aurélio Dias",
     dataInicio: "2023-05-01",
     dataTermino: "2024-12-31",
     valorAluguel: 1500,
@@ -520,7 +520,7 @@ export const mockContratos: Contrato[] = [
     imovelId: "7",
     imovelCodigo: "A-107",
     inquilinoId: "5",
-    inquilinoNome: "Marcos VinÃ­cius Lima",
+    inquilinoNome: "Marcos Vinícius Lima",
     proprietarioId: "4",
     proprietarioNome: "Fernanda Aparecida Costa",
     dataInicio: "2023-06-01",
@@ -536,7 +536,7 @@ export const mockContratos: Contrato[] = [
     imovelId: "9",
     imovelCodigo: "A-109",
     inquilinoId: "6",
-    inquilinoNome: "PatrÃ­cia Alves Souza",
+    inquilinoNome: "Patrícia Alves Souza",
     proprietarioId: "5",
     proprietarioNome: "Henrique Borges",
     dataInicio: "2022-09-01",
@@ -586,7 +586,7 @@ export const mockContratos: Contrato[] = [
     inquilinoId: "9",
     inquilinoNome: "Empresa XYZ Ltda",
     proprietarioId: "7",
-    proprietarioNome: "Grupo ImÃ³veis ABC Ltda",
+    proprietarioNome: "Grupo Imóveis ABC Ltda",
     dataInicio: "2023-02-01",
     dataTermino: "2026-01-31",
     valorAluguel: 2800,
@@ -602,7 +602,7 @@ export const mockContratos: Contrato[] = [
     inquilinoId: "10",
     inquilinoNome: "Bruna Carvalho Dias",
     proprietarioId: "8",
-    proprietarioNome: "ImÃ³veis Reunidos S.A.",
+    proprietarioNome: "Imóveis Reunidos S.A.",
     dataInicio: "2023-08-01",
     dataTermino: "2025-07-31",
     valorAluguel: 800,
@@ -613,7 +613,7 @@ export const mockContratos: Contrato[] = [
   },
 ];
 
-// â”€â”€ CobranÃ§as â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Cobranças
 export const mockCobrancas: Cobranca[] = [
   {
     id: "1",
@@ -646,7 +646,7 @@ export const mockCobrancas: Cobranca[] = [
   {
     id: "3",
     inquilinoId: "3",
-    inquilinoNome: "JosÃ© AntÃ´nio Oliveira",
+    inquilinoNome: "José Antônio Oliveira",
     imovelId: "4",
     imovelCodigo: "A-104",
     valor: 1650,
@@ -672,7 +672,7 @@ export const mockCobrancas: Cobranca[] = [
   {
     id: "5",
     inquilinoId: "5",
-    inquilinoNome: "Marcos VinÃ­cius Lima",
+    inquilinoNome: "Marcos Vinícius Lima",
     imovelId: "7",
     imovelCodigo: "A-107",
     valor: 900,
@@ -686,7 +686,7 @@ export const mockCobrancas: Cobranca[] = [
   {
     id: "6",
     inquilinoId: "6",
-    inquilinoNome: "PatrÃ­cia Alves Souza",
+    inquilinoNome: "Patrícia Alves Souza",
     imovelId: "9",
     imovelCodigo: "A-109",
     valor: 2200,
@@ -780,7 +780,7 @@ export const mockCobrancas: Cobranca[] = [
   },
 ];
 
-// â”€â”€ Chamados de ManutenÃ§Ã£o â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Chamados de Manutenção
 export const mockChamados: Chamado[] = [
   {
     id: "1",
@@ -788,11 +788,11 @@ export const mockChamados: Chamado[] = [
     imovelCodigo: "A-101",
     inquilinoId: "1",
     inquilinoNome: "Carlos Eduardo Silva",
-    tipo: "HidrÃ¡ulica",
+    tipo: "Hidráulica",
     descricao: "Vazamento embaixo da pia da cozinha.",
     status: "em_andamento",
     prioridade: "alta",
-    responsavel: "MÃ¡rio (Encanador)",
+    responsavel: "Mário (Encanador)",
     dataAbertura: "2024-05-20",
     valorGasto: 250,
   },
@@ -802,7 +802,7 @@ export const mockChamados: Chamado[] = [
     imovelCodigo: "A-106",
     inquilinoId: "4",
     inquilinoNome: "Ana Paula Rodrigues",
-    tipo: "ElÃ©trica",
+    tipo: "Elétrica",
     descricao: "Tomada da sala sem funcionar.",
     status: "aberto",
     prioridade: "media",
@@ -814,9 +814,9 @@ export const mockChamados: Chamado[] = [
     imovelId: "9",
     imovelCodigo: "A-109",
     inquilinoId: "6",
-    inquilinoNome: "PatrÃ­cia Alves Souza",
+    inquilinoNome: "Patrícia Alves Souza",
     tipo: "Estrutural",
-    descricao: "InfiltraÃ§Ã£o no teto do quarto principal.",
+    descricao: "Infiltração no teto do quarto principal.",
     status: "aberto",
     prioridade: "urgente",
     responsavel: undefined,
@@ -828,11 +828,11 @@ export const mockChamados: Chamado[] = [
     imovelCodigo: "A-102",
     inquilinoId: "2",
     inquilinoNome: "Maria Fernanda Santos",
-    tipo: "HidrÃ¡ulica",
-    descricao: "Chuveiro sem pressÃ£o.",
+    tipo: "Hidráulica",
+    descricao: "Chuveiro sem pressão.",
     status: "concluido",
     prioridade: "baixa",
-    responsavel: "MÃ¡rio (Encanador)",
+    responsavel: "Mário (Encanador)",
     dataAbertura: "2024-04-15",
     dataConclusao: "2024-04-17",
     valorGasto: 80,
@@ -871,8 +871,8 @@ export const mockChamados: Chamado[] = [
     imovelId: "7",
     imovelCodigo: "A-107",
     inquilinoId: "5",
-    inquilinoNome: "Marcos VinÃ­cius Lima",
-    tipo: "ElÃ©trica",
+    inquilinoNome: "Marcos Vinícius Lima",
+    tipo: "Elétrica",
     descricao: "Disjuntor desarmando constantemente.",
     status: "aberto",
     prioridade: "alta",
@@ -881,7 +881,7 @@ export const mockChamados: Chamado[] = [
   },
 ];
 
-// â”€â”€ Vagas de Garagem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Vagas de Garagem
 export const mockVagas: Vaga[] = [
   {
     id: "1",
@@ -918,7 +918,7 @@ export const mockVagas: Vaga[] = [
     imovelId: "4",
     imovelCodigo: "A-104",
     inquilinoId: "3",
-    inquilinoNome: "JosÃ© AntÃ´nio Oliveira",
+    inquilinoNome: "José Antônio Oliveira",
     placa: "GHI-9012",
     modelo: "VW Gol",
     cor: "Vermelho",
@@ -971,7 +971,7 @@ export const mockVagas: Vaga[] = [
     imovelId: "7",
     imovelCodigo: "A-107",
     inquilinoId: "5",
-    inquilinoNome: "Marcos VinÃ­cius Lima",
+    inquilinoNome: "Marcos Vinícius Lima",
     placa: "STU-5678",
     modelo: "Moto Honda CB500",
     cor: "Preto",
@@ -1005,7 +1005,7 @@ export const mockVagas: Vaga[] = [
   },
 ];
 
-// â”€â”€ Dados do Dashboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+//
 export const mockDashboardStats = {
   totalImoveis: mockImoveis.length,
   imoveisOcupados: mockImoveis.filter((i) => i.status === "ocupado").length,
@@ -1032,7 +1032,7 @@ export const mockReceitaMensal = [
   { mes: "Jun", valor: 15300 },
 ];
 
-// â”€â”€ WhatsApp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// WhatsApp
 export const mockConversas: ConversaWhatsApp[] = [
   {
     id: "c1",
@@ -1048,7 +1048,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "cobranca",
         conteudo:
-          "OlÃ¡, Carlos! ðŸ‘‹ Segue o lembrete de cobranÃ§a referente ao aluguel de *junho/2025* do imÃ³vel AP-101.\n\nðŸ’° Valor: R$ 1.200,00\nðŸ“… Vencimento: 10/06/2025\n\nQualquer dÃºvida, estamos Ã  disposiÃ§Ã£o!",
+          "Olá, Carlos! '< Segue o lembrete de cobrança referente ao aluguel de *junho/2025* do imóvel AP-101.\n\nValor: R$ 1.200,00\n". Vencimento: 10/06/2025\n\nQualquer dúvida, estamos à disposição!",
         hora: "09:00",
         status: "lido",
       },
@@ -1064,7 +1064,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         id: "m3",
         remetente: "inquilino",
         tipo: "texto",
-        conteudo: "JÃ¡ realizei o pagamento via Pix. Pode confirmar?",
+        conteudo: "Já realizei o pagamento via Pix. Pode confirmar?",
         hora: "14:30",
         status: "lido",
       },
@@ -1073,7 +1073,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "inquilino",
         tipo: "texto",
         conteudo:
-          "TambÃ©m queria avisar que a torneira da cozinha estÃ¡ com vazamento leve.",
+          "Também queria avisar que a torneira da cozinha está com vazamento leve.",
         hora: "14:31",
         status: "lido",
       },
@@ -1093,7 +1093,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "lembrete",
         conteudo:
-          "OlÃ¡, Maria! Passando para lembrar que o vencimento do seu aluguel de *AP-102* Ã© dia 10/06. Valor: R$ 1.100,00. Obrigado! ðŸ˜Š",
+          "Olá, Maria! Passando para lembrar que o vencimento do seu aluguel de *AP-102* é dia 10/06. Valor: R$ 1.100,00. Obrigado!",
         hora: "10:00",
         status: "lido",
       },
@@ -1101,7 +1101,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         id: "m6",
         remetente: "inquilino",
         tipo: "texto",
-        conteudo: "Obrigada pelo aviso! JÃ¡ agendei o pagamento.",
+        conteudo: "Obrigada pelo aviso! Já agendei o pagamento.",
         hora: "10:20",
         status: "lido",
       },
@@ -1110,7 +1110,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "confirmacao",
         conteudo:
-          "âœ… Pagamento confirmado! Recebemos o aluguel de R$ 1.100,00 referente a junho/2025. Obrigado, Maria!",
+          "Pagamento confirmado! Recebemos o aluguel de R$ 1.100,00 referente a junho/2025. Obrigado, Maria!",
         hora: "11:05",
         status: "entregue",
       },
@@ -1119,7 +1119,7 @@ export const mockConversas: ConversaWhatsApp[] = [
   {
     id: "c3",
     inquilinoId: "3",
-    inquilinoNome: "JosÃ© AntÃ´nio Oliveira",
+    inquilinoNome: "José Antônio Oliveira",
     imovelCodigo: "A-104",
     telefone: "(11) 96543-2109",
     online: false,
@@ -1130,7 +1130,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "cobranca",
         conteudo:
-          "âš ï¸ OlÃ¡, JosÃ©! Identificamos que o aluguel de *maio/2025* do imÃ³vel AP-202 ainda estÃ¡ em aberto.\n\nðŸ’° Valor original: R$ 1.350,00\nâž• Multa (2%): R$ 27,00\nâž• Juros: R$ 13,50\nðŸ’¸ Total: R$ 1.390,50\n\nPor favor, regularize o quanto antes para evitar encargos adicionais.",
+          "Olá, José! Identificamos que o aluguel de *maio/2025* do imóvel AP-202 ainda está em aberto.\n\nValor original: R$ 1.350,00\nMulta (2%): R$ 27,00\nJuros: R$ 13,50\nTotal: R$ 1.390,50\n\nPor favor, regularize o quanto antes para evitar encargos adicionais.",
         hora: "08:30",
         status: "entregue",
       },
@@ -1139,7 +1139,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "inquilino",
         tipo: "texto",
         conteudo:
-          "Desculpe o atraso, estou passando por uma dificuldade esse mÃªs. Posso pagar na sexta?",
+          "Desculpe o atraso, estou passando por uma dificuldade esse mês. Posso pagar na sexta?",
         hora: "09:10",
         status: "lido",
       },
@@ -1159,7 +1159,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "manutencao",
         conteudo:
-          "ðŸ”§ OlÃ¡, Ana! Confirmamos o agendamento da manutenÃ§Ã£o solicitada para o imÃ³vel AP-302. O tÃ©cnico passarÃ¡ na *quarta-feira, dia 05/06, entre 9h e 12h*. Por favor, certifique-se de estar no local. Obrigado!",
+          ""Olá, Ana! Confirmamos o agendamento da manutenção solicitada para o imóvel AP-302. O técnico passará na *quarta-feira, dia 05/06, entre 9h e 12h*. Por favor, certifique-se de estar no local. Obrigado!",
         hora: "15:00",
         status: "lido",
       },
@@ -1176,7 +1176,7 @@ export const mockConversas: ConversaWhatsApp[] = [
   {
     id: "c5",
     inquilinoId: "5",
-    inquilinoNome: "Marcos VinÃ­cius Lima",
+    inquilinoNome: "Marcos Vinícius Lima",
     imovelCodigo: "A-107",
     telefone: "(11) 94321-0987",
     online: false,
@@ -1187,7 +1187,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "lembrete",
         conteudo:
-          "OlÃ¡, Marcos! Lembrete: aluguel de junho/2025 vence em 10/06. Valor: R$ 750,00. Qualquer dÃºvida Ã© sÃ³ falar! ðŸ‘",
+          "Olá, Marcos! Lembrete: aluguel de junho/2025 vence em 10/06. Valor: R$ 750,00. Qualquer dúvida é só falar!",
         hora: "09:00",
         status: "lido",
       },
@@ -1196,7 +1196,7 @@ export const mockConversas: ConversaWhatsApp[] = [
   {
     id: "c6",
     inquilinoId: "6",
-    inquilinoNome: "PatrÃ­cia Alves Souza",
+    inquilinoNome: "Patrícia Alves Souza",
     imovelCodigo: "A-109",
     telefone: "(11) 93210-9876",
     online: false,
@@ -1207,7 +1207,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "cobranca",
         conteudo:
-          "OlÃ¡, PatrÃ­cia! Segue cobranÃ§a referente ao aluguel de junho/2025 da Casa CS-001.\n\nðŸ’° Valor: R$ 2.200,00\nðŸ“… Vencimento: 10/06/2025\n\nChave Pix para pagamento: gestao@imob.com.br",
+          "Olá, Patrícia! Segue cobrança referente ao aluguel de junho/2025 da Casa CS-001.\n\nValor: R$ 2.200,00\n". Vencimento: 10/06/2025\n\nChave Pix para pagamento: gestao@imob.com.br",
         hora: "09:30",
         status: "lido",
       },
@@ -1215,7 +1215,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         id: "m14",
         remetente: "inquilino",
         tipo: "texto",
-        conteudo: "OlÃ¡! Pagamento realizado. Segue comprovante.",
+        conteudo: "Olá! Pagamento realizado. Segue comprovante.",
         hora: "11:00",
         status: "lido",
       },
@@ -1224,7 +1224,7 @@ export const mockConversas: ConversaWhatsApp[] = [
         remetente: "admin",
         tipo: "confirmacao",
         conteudo:
-          "âœ… Recebido! Pagamento de R$ 2.200,00 confirmado. Obrigado, PatrÃ­cia!",
+          "Recebido! Pagamento de R$ 2.200,00 confirmado. Obrigado, Patrícia!",
         hora: "11:30",
         status: "entregue",
       },
@@ -1235,58 +1235,58 @@ export const mockConversas: ConversaWhatsApp[] = [
 export const mockTemplates: TemplateWhatsApp[] = [
   {
     id: "t1",
-    nome: "CobranÃ§a de Aluguel",
+    nome: "Cobrança de Aluguel",
     tipo: "cobranca",
     conteudo:
-      "OlÃ¡, {nome}! ðŸ‘‹ Segue o lembrete de cobranÃ§a referente ao aluguel de *{mes}* do imÃ³vel {imovel}.\n\nðŸ’° Valor: R$ {valor}\nðŸ“… Vencimento: {vencimento}\n\nQualquer dÃºvida, estamos Ã  disposiÃ§Ã£o!",
+      "Olá, {nome}! '< Segue o lembrete de cobrança referente ao aluguel de *{mes}* do imóvel {imovel}.\n\nValor: R$ {valor}\n". Vencimento: {vencimento}\n\nQualquer dúvida, estamos à disposição!",
   },
   {
     id: "t2",
     nome: "Aluguel em Atraso",
     tipo: "cobranca",
     conteudo:
-      "âš ï¸ OlÃ¡, {nome}! Identificamos que o aluguel de *{mes}* do imÃ³vel {imovel} ainda estÃ¡ em aberto.\n\nðŸ’° Valor: R$ {valor}\nâž• Multa + Juros: R$ {encargos}\n\nPor favor, regularize o quanto antes.",
+      "Olá, {nome}! Identificamos que o aluguel de *{mes}* do imóvel {imovel} ainda está em aberto.\n\nValor: R$ {valor}\nMulta + Juros: R$ {encargos}\n\nPor favor, regularize o quanto antes.",
   },
   {
     id: "t3",
     nome: "Lembrete de Vencimento",
     tipo: "lembrete",
     conteudo:
-      "OlÃ¡, {nome}! Passando para lembrar que o vencimento do seu aluguel Ã© dia {vencimento}. Valor: R$ {valor}. Obrigado! ðŸ˜Š",
+      "Olá, {nome}! Passando para lembrar que o vencimento do seu aluguel é dia {vencimento}. Valor: R$ {valor}. Obrigado!",
   },
   {
     id: "t4",
-    nome: "ConfirmaÃ§Ã£o de Pagamento",
+    nome: "Confirmação de Pagamento",
     tipo: "confirmacao",
     conteudo:
-      "âœ… Pagamento confirmado! Recebemos o aluguel de R$ {valor} referente a {mes}. Obrigado, {nome}!",
+      "Pagamento confirmado! Recebemos o aluguel de R$ {valor} referente a {mes}. Obrigado, {nome}!",
   },
   {
     id: "t5",
-    nome: "Agendamento de ManutenÃ§Ã£o",
+    nome: "Agendamento de Manutenção",
     tipo: "manutencao",
     conteudo:
-      "ðŸ”§ OlÃ¡, {nome}! Confirmamos o agendamento da manutenÃ§Ã£o do imÃ³vel {imovel}. O tÃ©cnico passarÃ¡ em *{data}, entre {horario}*. Por favor, certifique-se de estar no local.",
+      ""Olá, {nome}! Confirmamos o agendamento da manutenção do imóvel {imovel}. O técnico passará em *{data}, entre {horario}*. Por favor, certifique-se de estar no local.",
   },
   {
     id: "t6",
     nome: "Boleto Gerado",
     tipo: "boleto",
     conteudo:
-      "ðŸ“„ OlÃ¡, {nome}! Seu boleto referente ao aluguel de {mes} foi gerado.\n\nðŸ’° Valor: R$ {valor}\nðŸ“… Vencimento: {vencimento}\nðŸ”— Link: {link}\n\nPague pelo app do seu banco ou casa lotÃ©rica.",
+      """ Olá, {nome}! Seu boleto referente ao aluguel de {mes} foi gerado.\n\nValor: R$ {valor}\n". Vencimento: {vencimento}\n"- Link: {link}\n\nPague pelo app do seu banco ou casa lotérica.",
   },
 ];
 
-// â”€â”€ Emails â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Emails
 export const mockEmailsAdmin: Email[] = [
   {
     id: "e1",
     de: "carlos.silva@email.com",
     deNome: "Carlos Eduardo Silva",
     para: "admin@gestao.com",
-    paraNome: "AdministraÃ§Ã£o",
-    assunto: "Comprovante de pagamento â€“ Junho/2025",
-    corpo: `Boa tarde,\n\nSegue em anexo o comprovante de pagamento do aluguel referente ao mÃªs de junho/2025, imÃ³vel AP-101.\n\nValor pago: R$ 1.200,00\nData: 08/06/2025\nChave Pix utilizada: admin@gestao.com\n\nAtenciosamente,\nCarlos Eduardo Silva`,
+    paraNome: "Administração",
+    assunto: "Comprovante de pagamento" Junho/2025",
+    corpo: `Boa tarde,\n\nSegue em anexo o comprovante de pagamento do aluguel referente ao mês de junho/2025, imóvel AP-101.\n\nValor pago: R$ 1.200,00\nData: 08/06/2025\nChave Pix utilizada: admin@gestao.com\n\nAtenciosamente,\nCarlos Eduardo Silva`,
     dataHora: "2025-06-08T14:30:00",
     lido: false,
     pasta: "inbox",
@@ -1295,11 +1295,11 @@ export const mockEmailsAdmin: Email[] = [
   {
     id: "e2",
     de: "jose.oliveira@email.com",
-    deNome: "JosÃ© AntÃ´nio Oliveira",
+    deNome: "José Antônio Oliveira",
     para: "admin@gestao.com",
-    paraNome: "AdministraÃ§Ã£o",
-    assunto: "Problema na torneira â€“ AP-202",
-    corpo: `OlÃ¡,\n\nGostaria de informar que a torneira da cozinha do apartamento AP-202 estÃ¡ com vazamento hÃ¡ 3 dias. JÃ¡ tentei apertar mas continua pingando.\n\nPoderiam enviar um tÃ©cnico para verificar?\n\nAguardo retorno.\nJosÃ© AntÃ´nio`,
+    paraNome: "Administração",
+    assunto: "Problema na torneira" AP-202",
+    corpo: `Olá,\n\nGostaria de informar que a torneira da cozinha do apartamento AP-202 está com vazamento há 3 dias. Já tentei apertar mas continua pingando.\n\nPoderiam enviar um técnico para verificar?\n\nAguardo retorno.\nJosé Antônio`,
     dataHora: "2025-06-07T09:15:00",
     lido: false,
     pasta: "inbox",
@@ -1310,9 +1310,9 @@ export const mockEmailsAdmin: Email[] = [
     de: "mfernanda@email.com",
     deNome: "Maria Fernanda Santos",
     para: "admin@gestao.com",
-    paraNome: "AdministraÃ§Ã£o",
-    assunto: "DÃºvida sobre renovaÃ§Ã£o de contrato",
-    corpo: `Bom dia,\n\nMeu contrato vence em 31/08/2025 e gostaria de saber sobre as condiÃ§Ãµes de renovaÃ§Ã£o. Tenho interesse em continuar no imÃ³vel AP-102.\n\nQual seria o novo valor e por quanto tempo podemos renovar?\n\nGrata,\nMaria Fernanda`,
+    paraNome: "Administração",
+    assunto: "Dúvida sobre renovação de contrato",
+    corpo: `Bom dia,\n\nMeu contrato vence em 31/08/2025 e gostaria de saber sobre as condições de renovação. Tenho interesse em continuar no imóvel AP-102.\n\nQual seria o novo valor e por quanto tempo podemos renovar?\n\nGrata,\nMaria Fernanda`,
     dataHora: "2025-06-05T11:00:00",
     lido: true,
     pasta: "inbox",
@@ -1321,11 +1321,11 @@ export const mockEmailsAdmin: Email[] = [
   {
     id: "e4",
     de: "admin@gestao.com",
-    deNome: "AdministraÃ§Ã£o",
+    deNome: "Administração",
     para: "carlos.silva@email.com",
     paraNome: "Carlos Eduardo Silva",
-    assunto: "Boleto de Aluguel â€“ Junho/2025 â€“ AP-101",
-    corpo: `Prezado Carlos,\n\nEncaminhamos o boleto referente ao aluguel do mÃªs de junho/2025.\n\nðŸ“‹ ImÃ³vel: AP-101 â€“ Rua das AcÃ¡cias, 450\nðŸ’° Valor: R$ 1.200,00\nðŸ“… Vencimento: 10/06/2025\n\nPara pagamento via Pix, utilize a chave: admin@gestao.com\n\nQualquer dÃºvida estamos Ã  disposiÃ§Ã£o.\n\nAtenciosamente,\nAdministraÃ§Ã£o gestorimob`,
+    assunto: "Boleto de Aluguel" Junho/2025" AP-101",
+    corpo: `Prezado Carlos,\n\nEncaminhamos o boleto referente ao aluguel do mês de junho/2025.\n\n"< Imóvel: AP-101" Rua das Acácias, 450\nValor: R$ 1.200,00\n". Vencimento: 10/06/2025\n\nPara pagamento via Pix, utilize a chave: admin@gestao.com\n\nQualquer dúvida estamos à disposição.\n\nAtenciosamente,\nAdministração gestorimob`,
     dataHora: "2025-06-01T08:00:00",
     lido: true,
     pasta: "enviados",
@@ -1334,11 +1334,11 @@ export const mockEmailsAdmin: Email[] = [
   {
     id: "e5",
     de: "admin@gestao.com",
-    deNome: "AdministraÃ§Ã£o",
+    deNome: "Administração",
     para: "jose.oliveira@email.com",
-    paraNome: "JosÃ© AntÃ´nio Oliveira",
-    assunto: "NotificaÃ§Ã£o de InadimplÃªncia â€“ Maio/2025",
-    corpo: `Prezado JosÃ© AntÃ´nio,\n\nInformamos que o aluguel referente ao mÃªs de maio/2025 do imÃ³vel AP-202 ainda nÃ£o foi identificado em nosso sistema.\n\nðŸ’° Valor original: R$ 1.350,00\nâž• Multa (2%): R$ 27,00\nâž• Juros diÃ¡rios: R$ 13,50\nðŸ’¸ Total atualizado: R$ 1.390,50\n\nSolicitamos a regularizaÃ§Ã£o do dÃ©bito atÃ© 15/06/2025 para evitar encargos adicionais.\n\nAtenciosamente,\nAdministraÃ§Ã£o gestorimob`,
+    paraNome: "José Antônio Oliveira",
+    assunto: "Notificação de Inadimplência" Maio/2025",
+    corpo: `Prezado José Antônio,\n\nInformamos que o aluguel referente ao mês de maio/2025 do imóvel AP-202 ainda não foi identificado em nosso sistema.\n\nValor original: R$ 1.350,00\nMulta (2%): R$ 27,00\nJuros diários: R$ 13,50\nTotal atualizado: R$ 1.390,50\n\nSolicitamos a regularização do débito até 15/06/2025 para evitar encargos adicionais.\n\nAtenciosamente,\nAdministração gestorimob`,
     dataHora: "2025-06-03T09:30:00",
     lido: true,
     pasta: "enviados",
@@ -1347,11 +1347,11 @@ export const mockEmailsAdmin: Email[] = [
   {
     id: "e6",
     de: "admin@gestao.com",
-    deNome: "AdministraÃ§Ã£o",
+    deNome: "Administração",
     para: "todos@inquilinos.com",
     paraNome: "Todos os Inquilinos",
-    assunto: "Aviso de Assembleia â€“ 15/06/2025",
-    corpo: `Prezados moradores,\n\nConvocamos todos para a Assembleia OrdinÃ¡ria de CondomÃ­nio a realizar-se no dia 15/06/2025, Ã s 19h, no salÃ£o de festas do edifÃ­cio.\n\nPauta:\n1. AprovaÃ§Ã£o das contas do 1Âº semestre\n2. Obras de revitalizaÃ§Ã£o da fachada\n3. Novo regulamento interno\n4. Assuntos gerais\n\nA presenÃ§a Ã© muito importante!\n\nAtenciosamente,\nAdministraÃ§Ã£o gestorimob`,
+    assunto: "Aviso de Assembleia" 15/06/2025",
+    corpo: `Prezados moradores,\n\nConvocamos todos para a Assembleia Ordinária de Condomínio a realizar-se no dia 15/06/2025, às 19h, no salão de festas do edifício.\n\nPauta:\n1. Aprovação das contas do 1º semestre\n2. Obras de revitalização da fachada\n3. Novo regulamento interno\n4. Assuntos gerais\n\nA presença é muito importante!\n\nAtenciosamente,\nAdministração gestorimob`,
     dataHora: "2025-06-04T16:00:00",
     lido: true,
     pasta: "enviados",
@@ -1362,9 +1362,9 @@ export const mockEmailsAdmin: Email[] = [
     de: "ana.rodrigues@email.com",
     deNome: "Ana Paula Rodrigues",
     para: "admin@gestao.com",
-    paraNome: "AdministraÃ§Ã£o",
-    assunto: "ConfirmaÃ§Ã£o agendamento manutenÃ§Ã£o",
-    corpo: `OlÃ¡,\n\nSÃ³ passando para confirmar que estarei em casa na quarta-feira (05/06) de manhÃ£ para receber o tÃ©cnico conforme agendado.\n\nObrigada!\nAna Paula`,
+    paraNome: "Administração",
+    assunto: "Confirmação agendamento manutenção",
+    corpo: `Olá,\n\nSó passando para confirmar que estarei em casa na quarta-feira (05/06) de manhã para receber o técnico conforme agendado.\n\nObrigada!\nAna Paula`,
     dataHora: "2025-06-04T20:00:00",
     lido: true,
     pasta: "inbox",
@@ -1377,11 +1377,11 @@ export const mockEmailsInquilino: Email[] = [
   {
     id: "ei1",
     de: "admin@gestao.com",
-    deNome: "AdministraÃ§Ã£o gestorimob",
+    deNome: "Administração gestorimob",
     para: "carlos.silva@email.com",
     paraNome: "Carlos Eduardo Silva",
-    assunto: "Boleto de Aluguel â€“ Junho/2025 â€“ AP-101",
-    corpo: `Prezado Carlos,\n\nEncaminhamos o boleto referente ao aluguel do mÃªs de junho/2025.\n\nðŸ“‹ ImÃ³vel: AP-101 â€“ Rua das AcÃ¡cias, 450\nðŸ’° Valor: R$ 1.200,00\nðŸ“… Vencimento: 10/06/2025\n\nPara pagamento via Pix, utilize a chave: admin@gestao.com\n\nQualquer dÃºvida estamos Ã  disposiÃ§Ã£o.\n\nAtenciosamente,\nAdministraÃ§Ã£o gestorimob`,
+    assunto: "Boleto de Aluguel" Junho/2025" AP-101",
+    corpo: `Prezado Carlos,\n\nEncaminhamos o boleto referente ao aluguel do mês de junho/2025.\n\n"< Imóvel: AP-101" Rua das Acácias, 450\nValor: R$ 1.200,00\n". Vencimento: 10/06/2025\n\nPara pagamento via Pix, utilize a chave: admin@gestao.com\n\nQualquer dúvida estamos à disposição.\n\nAtenciosamente,\nAdministração gestorimob`,
     dataHora: "2025-06-01T08:00:00",
     lido: true,
     pasta: "inbox",
@@ -1390,11 +1390,11 @@ export const mockEmailsInquilino: Email[] = [
   {
     id: "ei2",
     de: "admin@gestao.com",
-    deNome: "AdministraÃ§Ã£o gestorimob",
+    deNome: "Administração gestorimob",
     para: "carlos.silva@email.com",
     paraNome: "Carlos Eduardo Silva",
-    assunto: "Aviso de Assembleia â€“ 15/06/2025",
-    corpo: `Prezado Carlos,\n\nConvocamos vocÃª para a Assembleia OrdinÃ¡ria de CondomÃ­nio a realizar-se no dia 15/06/2025, Ã s 19h, no salÃ£o de festas.\n\nPauta:\n1. AprovaÃ§Ã£o das contas do 1Âº semestre\n2. Obras de revitalizaÃ§Ã£o da fachada\n3. Novo regulamento interno\n\nAtenciosamente,\nAdministraÃ§Ã£o gestorimob`,
+    assunto: "Aviso de Assembleia" 15/06/2025",
+    corpo: `Prezado Carlos,\n\nConvocamos você para a Assembleia Ordinária de Condomínio a realizar-se no dia 15/06/2025, às 19h, no salão de festas.\n\nPauta:\n1. Aprovação das contas do 1º semestre\n2. Obras de revitalização da fachada\n3. Novo regulamento interno\n\nAtenciosamente,\nAdministração gestorimob`,
     dataHora: "2025-06-04T16:00:00",
     lido: false,
     pasta: "inbox",
@@ -1405,8 +1405,8 @@ export const mockEmailsInquilino: Email[] = [
     de: "carlos.silva@email.com",
     deNome: "Carlos Eduardo Silva",
     para: "admin@gestao.com",
-    paraNome: "AdministraÃ§Ã£o",
-    assunto: "Comprovante de pagamento â€“ Junho/2025",
+    paraNome: "Administração",
+    assunto: "Comprovante de pagamento" Junho/2025",
     corpo: `Boa tarde,\n\nSegue o comprovante de pagamento do aluguel de junho/2025.\n\nValor: R$ 1.200,00\nData: 08/06/2025\n\nAtenciosamente,\nCarlos Eduardo Silva`,
     dataHora: "2025-06-08T14:30:00",
     lido: true,

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -9,8 +9,8 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "gestorimob — Sistema de Gestão de Locações",
-  description: "Sistema de gestão de locações e condomínios",
+  title: "gestorimob - Sistema de Gest�o de Loca��es",
+  description: "Sistema de gest�o de loca��es e condom�nios",
 };
 
 export default function RootLayout({
